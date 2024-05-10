@@ -19,7 +19,7 @@ import (
 	"github.com/metatube-community/metatube-sdk-go/route/auth"
 )
 
-const defaultRequestTimeout = time.Minute
+const defaultRequestTimeout = 3 * time.Minute
 
 var (
 	opts = new(options)
@@ -55,7 +55,7 @@ func init() {
 	flag.StringVar(&opts.port, "port", "8080", "Port number of server")
 	flag.StringVar(&opts.token, "token", "", "Token to access server")
 	flag.StringVar(&opts.dsn, "dsn", "", "Database Service Name")
-	flag.DurationVar(&opts.requestTimeout, "request-timeout", time.Minute, "Timeout per request")
+	flag.DurationVar(&opts.requestTimeout, "request-timeout", 3*time.Minute, "Timeout per request")
 	flag.IntVar(&opts.dbMaxIdleConns, "db-max-idle-conns", 0, "Database max idle connections")
 	flag.IntVar(&opts.dbMaxOpenConns, "db-max-open-conns", 0, "Database max open connections")
 	flag.BoolVar(&opts.dbAutoMigrate, "db-auto-migrate", false, "Database auto migration")

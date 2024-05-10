@@ -1,0 +1,1 @@
+systemd-run --user --scope -p MemoryMax=7000M -p MemorySwapMax=12000M ./build/metatube-server -port 33088 -dsn "postgres://metatube:metatube@127.0.0.1:5432/metatube" -db-auto-migrate -db-prepared-stmt

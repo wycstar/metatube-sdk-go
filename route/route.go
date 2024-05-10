@@ -14,6 +14,7 @@ import (
 )
 
 func New(app *engine.Engine, v auth.Validator) *gin.Engine {
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.New()
 	{
 		// register middleware

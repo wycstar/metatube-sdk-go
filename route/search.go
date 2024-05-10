@@ -3,6 +3,7 @@ package route
 import (
 	"net/http"
 	pkgurl "net/url"
+	"regexp"
 
 	"github.com/gin-gonic/gin"
 
@@ -58,6 +59,8 @@ func getSearch(app *engine.Engine, typ searchType) gin.HandlerFunc {
 				results, err = app.SearchActor(query.Q, query.Provider, query.Fallback)
 			}
 		case movieSearchType:
+			rep := regexp.MustCompile(`-part\d+$`)
+			query.Q = rep.ReplaceAllString(query.Q, "")
 			if isValidURL {
 				results, err = app.GetMovieInfoByURL(query.Q, true /* always lazy */)
 			} else if searchAll {
