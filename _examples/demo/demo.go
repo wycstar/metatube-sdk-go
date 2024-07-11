@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/metatube-community/metatube-sdk-go/engine"
-	tokyohot "github.com/metatube-community/metatube-sdk-go/provider/tokyo-hot"
+	"github.com/metatube-community/metatube-sdk-go/provider/fanza"
 )
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
 	// app.GetMovieInfoByProviderID(arzon.Name, "1252925", true)
 
 	// // Get movie metadata from given URL with lazy enabled.
-	// app.GetMovieInfoByURL("https://www.heyzo.com/moviepages/2189/index.html", true)
+	// app.GetMovieInfoByURL("https://www.tokyo-hot.com/product/21083/", true)
 
 	// // Get actor primary image id `24490` from Xs/List.
 	// app.GetActorPrimaryImage(xslist.Name, "24490")
@@ -51,5 +51,9 @@ func main() {
 
 	// // Get movie backdrop image id `DLDSS-077` from SOD.
 	// app.GetMovieBackdropImage(sod.Name, "DLDSS-077")
-	fmt.Println(app.GetMoviePrimaryImage(tokyohot.Name, "n0835", -1, -1))
+	img, err := app.GetMoviePrimaryImage(fanza.Name, "hmn00268", -1, -1)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(img.Bounds())
 }
