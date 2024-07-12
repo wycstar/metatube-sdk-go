@@ -55,8 +55,9 @@ func getTranslate() gin.HandlerFunc {
 		)
 		switch strings.ToLower(query.Engine) {
 		case googleTranslateEngine:
-			result, err = translate.GoogleTranslate(query.Q, query.From, query.To,
-				c.Query(googleAPIKey))
+			// result, err = translate.GoogleTranslate(query.Q, query.From, query.To,
+			// 	c.Query(googleAPIKey))
+			result, err = translate.TencentTranslate(query.Q, query.From, query.To, c.Query(googleAPIKey))
 		case googleFreeTranslateEngine:
 			result, err = translate.GoogleFreeTranslate(query.Q, query.From, query.To)
 		case baiduTranslateEngine:
