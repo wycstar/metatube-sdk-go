@@ -203,6 +203,10 @@ func (mgs *MGS) GetMovieInfoByURL(rawURL string) (info *model.MovieInfo, err err
 }
 
 func (mgs *MGS) NormalizeMovieKeyword(keyword string) string {
+	if ss := regexp.MustCompile(`^(?i)(?:.*)-(\d{3,4})M$`).FindStringSubmatch(keyword); len(ss) == 2 {
+		keyword = strings.TrimSuffix(keyword, "M")
+	}
+
 	if number.IsSpecial(keyword) {
 		return ""
 	}

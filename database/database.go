@@ -63,7 +63,7 @@ func Open(cfg *Config) (db *gorm.DB, err error) {
 	db, err = gorm.Open(dialector, &gorm.Config{
 		Logger: logger.New(log.New(os.Stdout, "[GORM]\u0020", log.LstdFlags), logger.Config{
 			SlowThreshold:             100 * time.Millisecond,
-			LogLevel:                  logger.Info,
+			LogLevel:                  logger.Silent,
 			IgnoreRecordNotFoundError: false,
 			Colorful:                  false,
 		}),

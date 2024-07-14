@@ -7,7 +7,7 @@ import (
 
 func TestTencentTranslate(t *testing.T) {
 	text := "ニュースキャスターは生ハメ本番中"
-	translation, err := TencentTranslate(text, "auto", "zh")
+	translation, err := TencentTranslate(text, "auto", "zh", "")
 	if err != nil {
 		fmt.Println("Translation Error:", err)
 		return

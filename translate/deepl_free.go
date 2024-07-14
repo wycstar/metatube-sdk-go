@@ -2,7 +2,6 @@ package translate
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/metatube-community/metatube-sdk-go/common/fetch"
@@ -26,6 +25,5 @@ func DeeplFreeTranslate(q, source, target string) (result string, err error) {
 	if err = json.NewDecoder(resp.Body).Decode(&data); err != nil {
 		return
 	}
-	fmt.Println(data.Content)
 	return data.Content, nil
 }

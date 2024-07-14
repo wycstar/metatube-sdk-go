@@ -26,8 +26,9 @@ var (
 )
 
 const (
-	Name     = "JavBus"
-	Priority = 1000 - 5
+	Name = "JavBus"
+	// Priority = 1000 - 5
+	Priority = 0
 )
 
 const (

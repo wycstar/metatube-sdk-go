@@ -4,12 +4,21 @@ import (
 	"fmt"
 
 	"github.com/metatube-community/metatube-sdk-go/engine"
-	"github.com/metatube-community/metatube-sdk-go/provider/fanza"
 )
 
 func main() {
 	// Allocate app engine with request timeout set to one minute.
 	app := engine.Default()
+	a, _ := app.SearchMovieAll("259luxu-752", true)
+	if len(a) > 0 {
+		for _, v := range a {
+			fmt.Println(v.Provider)
+		}
+	}
+	// a, _ := app.SearchMovie("259LUXU-752", avbase.Name, true)
+	// if len(a) > 0 {
+	// 	fmt.Println(a[0])
+	// }
 
 	// Search actor named `ひなたまりん` from Xs/List with fallback enabled.
 	// app.SearchActor("ひなたまりん", xslist.Name, true)
@@ -51,9 +60,9 @@ func main() {
 
 	// // Get movie backdrop image id `DLDSS-077` from SOD.
 	// app.GetMovieBackdropImage(sod.Name, "DLDSS-077")
-	img, err := app.GetMoviePrimaryImage(fanza.Name, "hmn00268", -1, -1)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(img.Bounds())
+	// img, err := app.GetMoviePrimaryImage(fanza.Name, "hmn00268", -1, -1)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Println(img.Bounds())
 }
