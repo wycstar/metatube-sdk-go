@@ -6,6 +6,8 @@ import (
 	"sync"
 	"time"
 
+	"log"
+
 	"gorm.io/gorm/clause"
 
 	"github.com/metatube-community/metatube-sdk-go/common/comparer"
@@ -123,10 +125,17 @@ func (e *Engine) searchMovieAll(keyword string) (results []*model.MovieSearchRes
 
 	// response channel.
 	for resp := range respCh {
-		ds.WriteString(fmt.Sprintf(" %s(%s): %v",
-			resp.Provider.Name(),
-			resp.EndTime.Sub(resp.StartTime),
-			resp.Error))
+		if len(resp.Results) == 0 {
+			ds.WriteString(fmt.Sprintf(" %s(%s): 无\n",
+				resp.Provider.Name(),
+				resp.EndTime.Sub(resp.StartTime),
+			))
+		} else {
+			ds.WriteString(fmt.Sprintf(" %s(%s): %s\n",
+				resp.Provider.Name(),
+				resp.EndTime.Sub(resp.StartTime),
+				resp.Results[0].Number))
+		}
 
 		if resp.Error != nil {
 			continue
@@ -134,7 +143,7 @@ func (e *Engine) searchMovieAll(keyword string) (results []*model.MovieSearchRes
 		results = append(results, resp.Results...)
 	}
 
-	e.logger.Infof("Search keyword %s:%s", keyword, ds.String())
+	log.Printf("Search keyword %s:\n%s", keyword, ds.String())
 	return
 }
 

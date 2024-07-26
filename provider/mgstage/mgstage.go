@@ -3,6 +3,7 @@ package mgstage
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 	"path"
@@ -219,6 +220,10 @@ func (mgs *MGS) SearchMovie(keyword string) (results []*model.MovieSearchResult,
 	c.OnXML(`//*[@id="center_column"]/div[2]/div/ul/li`, func(e *colly.XMLElement) {
 		homepage := e.Request.AbsoluteURL(e.ChildAttr(`.//h5/a`, "href"))
 		id, _ := mgs.ParseMovieIDFromURL(homepage)
+		if id != keyword {
+			log.Printf("%s和%s不相等, 忽略这个结果", keyword, id)
+			return
+		}
 		results = append(results, &model.MovieSearchResult{
 			ID:       id,
 			Number:   id, /* same as ID */

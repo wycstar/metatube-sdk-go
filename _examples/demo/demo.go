@@ -9,16 +9,16 @@ import (
 func main() {
 	// Allocate app engine with request timeout set to one minute.
 	app := engine.Default()
-	a, _ := app.SearchMovieAll("259luxu-752", true)
-	if len(a) > 0 {
-		for _, v := range a {
-			fmt.Println(v.Provider)
-		}
-	}
-	// a, _ := app.SearchMovie("259LUXU-752", avbase.Name, true)
+	// a, _ := app.SearchMovieAll("SIRO-1222M", true)
 	// if len(a) > 0 {
-	// 	fmt.Println(a[0])
+	// 	for _, v := range a {
+	// 		fmt.Println(v.Provider)
+	// 	}
 	// }
+	a, _ := app.SearchMovieAll("107stars-618", true)
+	if len(a) > 0 {
+		fmt.Println(a[0])
+	}
 
 	// Search actor named `ひなたまりん` from Xs/List with fallback enabled.
 	// app.SearchActor("ひなたまりん", xslist.Name, true)
