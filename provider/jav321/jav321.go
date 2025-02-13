@@ -236,10 +236,14 @@ func (jav *JAV321) SearchMovie(keyword string) (results []*model.MovieSearchResu
 				return
 			}
 			results = append(results, info.ToSearchResult())
+		} else {
+			// jav321直接搜索可能搜不到, 这时直接拼接url
+			var info *model.MovieInfo
+			if info, err = jav.GetMovieInfoByID(keyword); err != nil {
+				return
+			}
+			results = append(results, info.ToSearchResult())
 		}
-		//if strings.HasPrefix(loc.Path, "/snp") {
-		//	// ignore
-		//}
 	})
 
 	if postErr := c.Post(searchURL, map[string]string{"sn": keyword}); postErr != nil {

@@ -47,7 +47,7 @@ func TencentTranslate(q, source, target, key string) (string, error) {
 	}
 	algorithm := "TC3-HMAC-SHA256"
 	timestamp := time.Now().Unix()
-	date := time.Unix(timestamp, 0).Format("2006-01-02")
+	date := time.Unix(timestamp, 0).UTC().Format("2006-01-02")
 
 	contentType := "application/json; charset=utf-8"
 	signedHeaders := "content-type;host;x-tc-action"

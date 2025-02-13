@@ -63,7 +63,7 @@ func DetectFaces(img image.Image, imageID string) (dets []pigo.Detection) {
 			Dim:    img.Bounds().Dx(),
 		},
 	}
-	currentDir := "d:/package/metatube/cache"
+	currentDir := "/home/wyc/package/metatube/cache"
 	casCacheBasePath := filepath.Join(currentDir, "face_cache")
 	_, err := os.Stat(casCacheBasePath)
 	if os.IsNotExist(err) {

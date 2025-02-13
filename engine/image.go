@@ -110,7 +110,7 @@ func (e *Engine) saveImgToFile(img image.Image, filepath string) error {
 }
 
 func (e *Engine) getImageByURL(provider mt.Provider, url string) (img image.Image, err error) {
-	currentDir := "d:/package/metatube/cache"
+	currentDir := "/home/wyc/package/metatube/cache"
 	urlHash := e.getImageIDByURL(url)
 	imageFn := urlHash + ".jpg"
 	imageCacheBasePath := filepath.Join(currentDir, "image_cache")
